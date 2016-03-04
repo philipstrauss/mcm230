@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Digital Media Assignment 1</title>
+	<link href="assgn1.css" rel="stylesheet">
+	<script src="jquery-1.12.1.js"></script>
+	<script src="jquery-ui.js"></script>
+</head>
+
+<body align="left" marginwidth="0">
+
+	<h1 align="center">Neuromancer, p.213</h1>
+
+	<div id="holder">
+
+		<div id="left">  
+
+			Philip Strauss<br>
+			Digital Media<br>
+			3/4/2016<br><br>
+			<form>
+	  			Comments:<br>
+	  			<input type="radio" name="showComments" id="radioA1" checked> show <br>
+	  			<input type="radio" name="showComments" id="radioA2"> hide
+			</form><br><br>
+			<form>
+	  			Links:<br>
+	  			<input type="radio" name="links" id="radioB1" checked> version 1 <br>
+	  			<input type="radio" name="links" id="radioB2"> version 2
+			</form>
+
+			<p id='explanation'>
+			The links here are an attempt to capture the idea of cultural coding and maybe Barthes' idea of connotations in a text.  The destination of the links may be toggled in order to try and show the varied experiences different readers would have (ideally, there would be many more versions of each links, but I didn't have time).  The separated passages may be rearranged by dragging them so that the reader can both break up the linearity of the text a little bit and also take a more "writerly" approach to working with it.  Finally, readers can follow the link to the source code and add experiment with it on their own, which seemed like a way to capture what Barthes calls "the field of infinite difference".
+			</p>
+
+		</div>
+
+		<div id="allText"></div>
+
+	</div>
+
+	<script>
+	$(document).ready(function(){
+
+		var texts = [];
+		var comments = [];
+		var linksA = ["https://www.youtube.com/embed/IBDK-HEbIZs", "https://www.youtube.com/embed/8FdvWuSl7eY","http://3.bp.blogspot.com/-CLUQlA76mME/Vg8RBgxo8lI/AAAAAAAAJOk/oNV38rzz9yo/s1600/gallery-1430662070-149412270.jpg", "http://www.youtube.com/embed/X5SaZ8EmSpw"];
+		var linksB = ["https://www.youtube.com/embed/sC0505qkWto", "https://www.youtube.com/embed/MczAqe_s8AQ","https://www.youtube.com/embed/sz9jc5blzRM","https://www.youtube.com/embed/AU-paVv6zTk"];
+
+		texts.push("<a id='link1'> She missed it by a fraction.</a>  She nearly cut it, but not quite.");
+		comments.push("We see hermeneutic coding here. A question is suggested even in the scene itself, as Molly is at the point of entry into an unknown place, a place unlike anything she, or, through the simstim, Case or we have so far seen in Tessier-Ashpool's stronghold.  We anticipate meeting the princess we saw briefly at the restaurant, and the sort of make-believe aspect of her quarters' entrance add to the suspense.  The text itself adds to the questions, causing the reader to wonder about the following actions that occur- what did she miss?  Is her missing it a good thing (some kind of projectile or trap, maybe) or a bad thing, as suggested by the second sentence?");
+
+		texts.push("She went in just right, Case thought.  The right attitude; it was something he could sense, something he could have seen in the posture of <a id='link2'>another cowboy leaning into a deck</a>, fingers flying across the board."); 
+		comments.push("This passage shows a sort of almost-relatable cultural code.  Case's comparison of Molly to an interface cowboy at a terminal isn't something we can necessarily understand very well, but we might have some idea of it by this point in the novel.  We also see symbolic coding in the sort of meat/technology dichotomy mentioned throughout the text.  Here it's broken down a little, through images of both a human cowboy in unison with a computer and a human fighter with bio-tech implants in a perfect physical and state of mind.");
+
+		texts.push("She had it: the thing, the moves.  And she'd pulled it all together for her entrance.  Pulled it together around the pain in her leg and <a id='link3'>marched down 3Jane's stairs like she owned the place, elbow of her gun arm at her hip, forearm up, wrist relaxed, swaying the muzzle of the fletcher with the studied nonchalance of a Regency duelist.</a>"); 
+		comments.push("Gibson employs the same sort of vague cultural coding.  Here, the vagueness comes from the difficulty in defining exactly what 'the thing' is, though we sort of know what he's talking about.  The kind of confidence Molly displays is familiar to us from any situation where someone can display a calm proficiency under pressure, like a last-inning batter or a doctor in surgery.");
+
+		texts.push("It was a performance.  It was like the culmination of a life-time's observation of martial arts tapes, cheap ones, the kind Case had grown up on. <a id='link4'> For a few seconds, he knew, she was every bad-ass hero, Sony Mao in the old Shaw videos, Mickey Chiba, the whole lineage back to Lee and Eastwood.</a>");
+		comments.push("This section is really cool because the cultural coding mixes fictional names with ones the audience might recognize.  The idea of a world is partly in ours, partly not is reflected in the way in which we witness Molly here through the sim-stim, both experiencing her sensory input and sitting at a console (and reading in on a screen or in a book). The implication of Molly's prowess here furthers the disproving of the meat/technology symbolic coding, showing the seamlessness with which Molly, a flesh-machine combination, embodies a sort of presence that seems to be above any distinction between the two.");
+
+		for( i=0; i<texts.length; i++) {
+
+			var toAdd = "<span class='block'>" + "<br>" + "<span class='quote'>" + texts[i] + "</span>" +"<br>"+  "<span class='comment'>" + comments[i] + "</span>" + "<br>" + "</span>";
+
+			$("#allText").append(toAdd)
+		}
+		$(".block").draggable();
+
+		for( i=0; i<linksA.length; i++) {
+
+			var link = "#link"+(i+1).toString();
+			$(link).attr("href", linksA[i]);
+			$(link).attr("target", "_blank");
+			$(link+":link").css("color","DarkBlue");
+			$(link+":visited").css("color","DarkBlue");
+		}
+
+
+		var showComments = true;
+		var version1 = true;
+
+		$("#radioA1").click(function(){
+
+			if(showComments == false){
+				showComments = true;
+				$(".comment").show();
+			}
+		});
+		$("#radioA2").click(function(){
+
+			if(showComments == true){
+				showComments = false;
+				$(".comment").hide();
+			}
+		});
+		$("#radioB1").click(function(){
+
+			if(version1 == false){
+				version1 = true;
+				for( i=0; i<linksA.length; i++){
+					var link = "#link"+(i+1).toString();
+					$(link).attr("href", linksA[i]);
+					$(link+":link").css("color","DarkBlue");
+					$(link+":visited").css("color","DarkBlue");
+				}
+			}
+		});
+		$("#radioB2").click(function(){
+
+			if(version1 == true){
+				version1 = false;
+				for( i=0; i<linksB.length; i++){
+					var link = "#link"+(i+1).toString();
+					$(link).attr("href", linksB[i]);
+					$(link+":link").css("color","rgb(120,0,0)");
+					$(link+":visited").css("color","rgb(120,0,0)");
+				}
+			}
+		});
+
+
+	   	
+
+	});
+	</script>
+
+
+
+</body>
+</html>

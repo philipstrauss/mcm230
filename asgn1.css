@@ -1,0 +1,38 @@
+h1 {
+
+	font-family: Arial;
+}
+
+a {
+	text-decoration: none;
+	target:_blank;
+}
+
+.quote {
+
+	font-family: Georgia;
+	font-size: 30px;
+}
+
+
+#allText {
+
+	width:850px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#left {
+	font-family: Arial;
+	position: fixed;
+	width: 200px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 25px;
+}
+
+#explanation {
+
+	font-family: Georgia;
+	font-size: 14px; 
+}
